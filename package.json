@@ -1,33 +1,38 @@
 {
-  "name": "use-geolocation",
+  "name": "use-geolocation-api",
   "version": "1.0.0",
   "repository": "git@github.com:AlexcastroDev/use-geolocation.git",
   "author": "Alex Oliveira <alexoliveira7x@gmail.com>",
   "license": "MIT",
-  "types": "dist/types/index.d.ts",
-  "main": "./dist/index.js",
-  "umd:main": "./dist/index.umd.js",
-  "module": "./dist/index.module.mjs",
-  "exports": {
-    "require": "./dist/index.js",
-    "default": "./dist/index.modern.js"
-  },
-  "files": [
-    "dist",
-    "src"
-  ],
   "publishConfig": {
     "source": "src/index.ts",
     "main": "dist/index.js"
   },
+  "source": "src/index.ts",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.modern.module.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "geolocation",
+    "geolocation-js",
+    "geolocation-api",
+    "react-geolocation",
+    "vue-geolocation",
+    "angular-geolocation"
+  ],
+  "files": [
+    "dist/**.js*",
+    "dist/**/*.ts"
+  ],
   "scripts": {
-    "build": "microbundle",
+    "build": "microbundle --tsconfig ./tsconfig.json --generateTypes",
     "dev": "microbundle watch",
-    "types": "tsc --declaration src/index.ts --outDir dist",
+    "types": "tsc src/index.ts --declaration --outDir types",
     "test": "jest",
     "test:ci": "jest && jest-coverage-badges --output './badges'",
     "prepare": "husky install",
-    "prettier": "prettier --write \"**/*.ts\""
+    "prettier": "prettier --write \"src/**/*.ts\""
   },
   "devDependencies": {
     "@types/jest": "^29.2.4",

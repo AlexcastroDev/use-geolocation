@@ -7,24 +7,22 @@ const options = {
   maximumAge: 0,
 }
 
-const useGeolocation = ({
-  onSuccess,
-  onError,
-  requestLocationOnMount,
-  getCurrentPositionOptions = options,
-}: IUseGeolocation): IUseGeolocationReturn => {
+const useGeolocation = (props?: IUseGeolocation): IUseGeolocationReturn => {
+  const getCurrentPositionOptions = props?.getCurrentPositionOptions || options
   let isMounted = false
 
   const onSuccessCallback = (data: GeolocationPosition) => {
-    onSuccess && onSuccess(data)
+    props?.onSuccess && props.onSuccess(data)
     GeolocationState.location = data
     GeolocationState.loading = false
+    GeolocationState.error = null
   }
 
   const onErrorCallback = (data: GeolocationPositionError) => {
-    onError && onError(data)
+    props?.onError && props.onError(data)
     GeolocationState.error = data
     GeolocationState.loading = false
+    GeolocationState.location = null
   }
 
   const requestGeolocation = () => {
@@ -38,7 +36,7 @@ const useGeolocation = ({
   }
 
   ;(() => {
-    if (requestLocationOnMount && !isMounted) {
+    if (props?.requestLocationOnMount && !isMounted) {
       requestGeolocation()
     }
     isMounted = true

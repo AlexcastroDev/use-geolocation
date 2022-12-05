@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import useGeolocation from 'use-geolocation'
 
 function App() {
   const [count, setCount] = useState(0)
-  const state = useGeolocation()
+
+  React.useEffect(() => {
+    useGeolocation({ requestLocationOnMount: true, onSuccess: (data) => console.log(data) })
+  }, [])
+
   return (
     <div className="App">
       <div>
