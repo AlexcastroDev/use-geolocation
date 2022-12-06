@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import useGeolocation from 'use-geolocation-api'
 
 function App() {
   const [count, setCount] = useState(0)
+  const { requestGeolocation, data, loading } = useGeolocation()
+  console.log("🚀 ~ file: App.tsx:9 ~ App ~ loading", loading)
+  console.log("🚀 ~ file: App.tsx:9 ~ App ~ location", data)
 
   React.useEffect(() => {
-    useGeolocation({ requestLocationOnMount: true, onSuccess: (data) => console.log(data) })
+    requestGeolocation()
   }, [])
 
   return (

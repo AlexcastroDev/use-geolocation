@@ -1,6 +1,6 @@
 # use-geolocation-api
 
-No dependencies, just Closure, Proxy and Geolocation. ( Native API )
+No dependencies, just Closure and Geolocation. ( Native API )
 
 ## Installation
 
@@ -22,9 +22,14 @@ yarn add use-geolocation-api
 import React from 'react'
 import useGeolocation from 'use-geolocation-api'
 
-React.useEffect(() => {
- useGeolocation({ requestLocationOnMount: true, onSuccess: (data) => console.log(data) })
-}, [])
+
+export function Home() {
+    const { requestGeolocation, data, loading } = useGeolocation()
+
+    React.useEffect(() => {
+        requestGeolocation()
+    }, [])
+}
 ```
 
 ## Properties
@@ -35,14 +40,15 @@ Closure
  onSuccess?: (data: GeolocationPosition) => void
  onError?: (error: GeolocationPositionError) => void
  getCurrentPositionOptions?: PositionOptions
- requestLocationOnMount?: boolean
 ```
 
 Return
 ```javascript
-location: GeolocationPosition | null
+ data: GeolocationPosition | null
 error: GeolocationPositionError | null
 loading: boolean
+isError: boolean
+isMounted: boolean
 requestGeolocation: () => void
 ```
 
