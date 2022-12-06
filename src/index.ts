@@ -1,4 +1,8 @@
-import { IGeolocationState, IUseGeolocation, IUseGeolocationReturn } from './types'
+import {
+  IGeolocationState,
+  IUseGeolocation,
+  IUseGeolocationReturn,
+} from './types'
 
 const options = {
   enableHighAccuracy: true,
@@ -11,7 +15,7 @@ export default function geolocationState(props?: IUseGeolocation) {
   let location = null as GeolocationPosition | null
   let error = null as IGeolocationState['error']
   let isError = false
-  let loading = false 
+  let loading = false
   let isMounted = false
 
   function manageGeolocationState() {
@@ -47,7 +51,7 @@ export default function geolocationState(props?: IUseGeolocation) {
       isError,
       error,
       loading,
-      data: location
+      data: location,
     }
   }
 
