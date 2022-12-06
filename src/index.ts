@@ -1,5 +1,4 @@
-import { IUseGeolocation, IUseGeolocationReturn } from './types'
-import GeolocationState from './state'
+import { IGeolocationState, IUseGeolocation, IUseGeolocationReturn } from './types'
 
 const options = {
   enableHighAccuracy: true,
@@ -7,47 +6,50 @@ const options = {
   maximumAge: 0,
 }
 
-const useGeolocation = (props?: IUseGeolocation): IUseGeolocationReturn => {
+export default function geolocationState(props?: IUseGeolocation) {
   const getCurrentPositionOptions = props?.getCurrentPositionOptions || options
+  let location = null as GeolocationPosition | null
+  let error = null as IGeolocationState['error']
+  let isError = false
+  let loading = false 
   let isMounted = false
 
-  const onSuccessCallback = (data: GeolocationPosition) => {
-    props?.onSuccess && props.onSuccess(data)
-    GeolocationState.location = data
-    GeolocationState.loading = false
-    GeolocationState.error = null
-  }
+  function manageGeolocationState() {
+    const onSuccessCallback = (data: GeolocationPosition) => {
+      props?.onSuccess && props.onSuccess(data)
+      location = data
+      loading = false
+      isError = false
+      error = null
+    }
 
-  const onErrorCallback = (data: GeolocationPositionError) => {
-    props?.onError && props.onError(data)
-    GeolocationState.error = data
-    GeolocationState.loading = false
-    GeolocationState.location = null
-  }
+    const onErrorCallback = (data: GeolocationPositionError) => {
+      props?.onError && props.onError(data)
+      error = data
+      isError = true
+      loading = false
+      location = null
+    }
 
-  const requestGeolocation = () => {
-    if (typeof window !== 'undefined') {
-      navigator.geolocation.getCurrentPosition(
-        onSuccessCallback,
-        onErrorCallback,
-        getCurrentPositionOptions
-      )
+    const requestGeolocation = () => {
+      if (typeof window !== 'undefined') {
+        navigator.geolocation.getCurrentPosition(
+          onSuccessCallback,
+          onErrorCallback,
+          getCurrentPositionOptions
+        )
+      }
+    }
+
+    return {
+      requestGeolocation,
+      isMounted,
+      isError,
+      error,
+      loading,
+      data: location
     }
   }
 
-  ;(() => {
-    if (props?.requestLocationOnMount && !isMounted) {
-      requestGeolocation()
-    }
-    isMounted = true
-  })()
-
-  return {
-    location: GeolocationState.location,
-    error: GeolocationState.error,
-    loading: GeolocationState.loading,
-    requestGeolocation,
-  }
+  return manageGeolocationState as unknown as IUseGeolocationReturn
 }
-
-export default useGeolocation
