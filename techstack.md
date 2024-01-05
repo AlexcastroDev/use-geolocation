@@ -42,7 +42,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [AlexcastroDev/use-geolocation](https://github.com/AlexcastroDev/use-geolocation)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|20<br/>Tools used|01/02/24 <br/>Report generated|
+|21<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -171,15 +171,16 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (7)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (8)</h2>
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (7)
+## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (8)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
 |[@types/jest](https://www.npmjs.com/@types/jest)|v29.2.4|12/05/22|Alex Oliveira |MIT|N/A|
 |[@types/react](https://www.npmjs.com/@types/react)|v18.0.26|12/05/22|Alex Oliveira |MIT|N/A|
 |[@types/react-dom](https://www.npmjs.com/@types/react-dom)|v18.0.9|12/05/22|Alex Oliveira |MIT|N/A|
+|[husky](https://www.npmjs.com/husky)|v8.0.2|12/05/22|Alex Oliveira |MIT|N/A|
 |[react-dom](https://www.npmjs.com/react-dom)|v18.2.0|12/05/22|Alex Oliveira |MIT|N/A|
 |[ts-jest](https://www.npmjs.com/ts-jest)|v29.0.3|12/05/22|Alex Oliveira |MIT|N/A|
 |[ts-node](https://www.npmjs.com/ts-node)|v10.9.1|12/05/22|Alex Oliveira |MIT|N/A|
